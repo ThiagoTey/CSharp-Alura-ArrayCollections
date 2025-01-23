@@ -36,4 +36,12 @@ public class ListaDeContasCorrentes
 
         _itens = novoArray;
     }
+
+    public ContaCorrente VerificarContaComMaiorSaldo()
+    {
+        double maiorSaldo = _itens.Max(item => item.Saldo);
+        ContaCorrente conta = _itens.First(item => item.Saldo == maiorSaldo);
+
+        return conta;
+    }
 }
