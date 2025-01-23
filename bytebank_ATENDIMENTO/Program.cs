@@ -48,7 +48,13 @@ void TestaArrayDeContasCorrentes()
     listaDeContas.Adicionar(new ContaCorrente(874, "7781438-E"));
     listaDeContas.Adicionar(new ContaCorrente(874, "7781438-E"));
 
-    listaDeContas.ExibirLista();
+    //listaDeContas.ExibirLista();
+
+    for (int = 0; i < listaDeContas.Tamanho; i++)
+    {
+        ContaCorrente conta = listaDeContas[i];
+        Console.WriteLine($"Indice [{i}] = {conta.Conta}/{conta.Numero_agencia);
+    }
 }
 
 TestaArrayDeContasCorrentes();
