@@ -44,4 +44,32 @@ public class ListaDeContasCorrentes
 
         return conta;
     }
+
+    public void Remover(ContaCorrente conta)
+    {
+        int indiceItem = -1;
+        for (int i = 0; i < _proximaPosicao; i++)
+        {
+            ContaCorrente contaAtual = _itens[i];
+            if (contaAtual == conta)
+            {
+                indiceItem = i;
+                break;
+            }
+        }
+        for (int i = indiceItem; i < _proximaPosicao - 1; i++)
+        {
+            _itens[i] = _itens[i + 1];
+        }
+        _proximaPosicao--;
+        _itens[_proximaPosicao] = null;
+    }
+
+    public void ExibirLista()
+    {
+        for(int i = 0; i < _proximaPosicao;i++)
+        {
+            Console.WriteLine($" - {i} - Conta : {_itens[i].Conta} - Agencia : {_itens[i].Numero_agencia}");
+        }
+    }
 }
