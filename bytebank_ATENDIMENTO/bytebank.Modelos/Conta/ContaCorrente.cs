@@ -101,7 +101,7 @@
 			Numero_agencia = numero_agencia;
 			Conta = conta;
 			TotalDeContasCriadas += 1;
-
+			Titular = new Cliente();
 		}
 
 		public override string ToString()
