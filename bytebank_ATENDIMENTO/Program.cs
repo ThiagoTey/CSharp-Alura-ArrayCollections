@@ -86,8 +86,8 @@ void TestaArrayDeContasCorrentes()
 List<ContaCorrente> _listaDeContas = new()
 {
     new ContaCorrente(95, "123456-X") {Saldo=100},
-    new ContaCorrente(95, "123456-Z") {Saldo=200},
-    new ContaCorrente(95, "123456-W") {Saldo=1512}
+    new ContaCorrente(100, "123456-Z") {Saldo=200},
+    new ContaCorrente(105, "123456-W") {Saldo=1512}
 };
 void AtendimentoCliente()
 {
@@ -125,7 +125,7 @@ void AtendimentoCliente()
                     ListarContas();
                     break;
                 case '3':
-                    CadastrarConta();
+                    RemoverConta();
                     break;
                 case '4':
                     CadastrarConta();
@@ -145,6 +145,29 @@ void AtendimentoCliente()
     }
     
 
+}
+
+void RemoverConta()
+{
+    Console.Clear();
+    Console.WriteLine("===============================");
+    Console.WriteLine("===      REMOVER CONTAS     ===");
+    Console.WriteLine("===============================");
+    Console.WriteLine("\n");
+    Console.Write("Informe o número da Conta: ");
+    string numeroConta = Console.ReadLine();
+    ContaCorrente conta = _listaDeContas.Where(conta => conta.Conta.Equals(numeroConta)).FirstOrDefault();
+    
+    if (conta != null)
+    {
+        _listaDeContas.Remove(conta);
+        Console.WriteLine("... Conta removida da lista! ...");
+    }
+    else
+    {
+        Console.WriteLine(" ... Conta para remoção não encontrada ...");
+    }
+    Console.ReadKey();
 }
 
 void ListarContas()
