@@ -85,7 +85,7 @@ void TestaArrayDeContasCorrentes()
 
 List<ContaCorrente> _listaDeContas = new()
 {
-    new ContaCorrente(95, "123456-X") {Saldo=100},
+    new ContaCorrente(123, "123456-X") {Saldo=100},
     new ContaCorrente(100, "123456-Z") {Saldo=200},
     new ContaCorrente(105, "123456-W") {Saldo=1512}
 };
@@ -128,7 +128,7 @@ void AtendimentoCliente()
                     RemoverConta();
                     break;
                 case '4':
-                    CadastrarConta();
+                    OrdernarContas();
                     break;
                 case '5':
                     CadastrarConta();
@@ -145,6 +145,13 @@ void AtendimentoCliente()
     }
     
 
+}
+
+void OrdernarContas()
+{
+    _listaDeContas.Sort();
+    Console.WriteLine("Lista Ordenado com sucesso!");
+    Console.ReadKey();
 }
 
 void RemoverConta()
@@ -231,4 +238,3 @@ void CadastrarConta()
 }
 
 AtendimentoCliente();
-
