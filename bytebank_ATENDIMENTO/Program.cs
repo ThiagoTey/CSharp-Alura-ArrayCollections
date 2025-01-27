@@ -85,9 +85,9 @@ void TestaArrayDeContasCorrentes()
 
 List<ContaCorrente> _listaDeContas = new()
 {
-    new ContaCorrente(123, "123456-X") {Saldo=100},
-    new ContaCorrente(100, "123456-Z") {Saldo=200},
-    new ContaCorrente(105, "123456-W") {Saldo=1512}
+    new ContaCorrente(123, "123456-X") {Saldo=100 ,Titular = new Cliente{Cpf="11111", Nome="cuza"}},
+    new ContaCorrente(100, "123456-Z") {Saldo=200, Titular = new Cliente{Cpf="12345", Nome="cuzi"}},
+    new ContaCorrente(105, "123456-W") {Saldo=1512, Titular = new Cliente{Cpf="33333", Nome="cuzu"}}
 };
 void AtendimentoCliente()
 {
@@ -131,7 +131,7 @@ void AtendimentoCliente()
                     OrdernarContas();
                     break;
                 case '5':
-                    CadastrarConta();
+                    PesquisarConta();
                     break;
                 default:
                     Console.WriteLine("Opcao não implementada.");
@@ -145,6 +145,52 @@ void AtendimentoCliente()
     }
     
 
+}
+
+void PesquisarConta()
+{
+    Console.Clear();
+    Console.WriteLine("===============================");
+    Console.WriteLine("===    PESQUISAR CONTAS     ===");
+    Console.WriteLine("===============================");
+    Console.WriteLine("\n");
+    Console.Write("Deseja pesquisar por (1) NUMERO DA CONTA ou (2)CPF TITULAR ? ");
+    switch (int.Parse(Console.ReadLine()))
+    {
+        case 1:
+            {
+                Console.Write("Informe o número da Conta: ");
+                string _numeroConta = Console.ReadLine();
+                ContaCorrente consultaConta = ConsultaPorNumeroConta(_numeroConta);
+                Console.WriteLine(consultaConta.ToString());
+                Console.ReadKey();
+                break;
+            }
+        case 2:
+            {
+                Console.Write("Informe o CPF do Titular: ");
+                string _cpf = Console.ReadLine();
+                ContaCorrente consultaCpf = ConsultaPorCPFTitular(_cpf);
+                Console.WriteLine(consultaCpf.ToString());
+                Console.ReadKey();
+                break;
+            }
+        default:
+            Console.WriteLine("Opção não implementada.");
+            break;
+    }
+}
+
+ContaCorrente ConsultaPorCPFTitular(string? cpf)
+{
+    ContaCorrente conta = _listaDeContas.Where(conta => conta.Titular.Cpf.Equals(cpf)).FirstOrDefault();
+    return conta;
+}
+
+ContaCorrente ConsultaPorNumeroConta(string? numeroConta)
+{
+    ContaCorrente conta = _listaDeContas.Where(conta => conta.Conta.Equals(numeroConta)).FirstOrDefault();
+    return conta;
 }
 
 void OrdernarContas()
