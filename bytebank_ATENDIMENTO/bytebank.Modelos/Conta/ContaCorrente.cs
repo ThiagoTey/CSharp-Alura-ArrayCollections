@@ -96,15 +96,15 @@
 			return true;
 		}
 
-		public ContaCorrente(int numero_agencia, string conta)
-		{
-			Numero_agencia = numero_agencia;
-			Conta = conta;
-			TotalDeContasCriadas += 1;
-			Titular = new Cliente();
-		}
+        public ContaCorrente(int numero_agencia)
+        {
+            Numero_agencia = numero_agencia;
+            Conta = Guid.NewGuid().ToString().Substring(0, 8);
+            Titular = new Cliente();
+            TotalDeContasCriadas += 1;
+        }
 
-		public override string ToString()
+        public override string ToString()
 		{
 
 			return $" === DADOS DA CONTA === \n" +
